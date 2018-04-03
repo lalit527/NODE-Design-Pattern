@@ -1,0 +1,19 @@
+{
+  "name": "node_design_pattern",
+  "version": "1.0.0",
+  "description": "Design Pattern in NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lalit527/NODE-Design-Pattern.git"
+  },
+  "author": "Lalit Yadav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lalit527/NODE-Design-Pattern/issues"
+  },
+  "homepage": "https://github.com/lalit527/NODE-Design-Pattern#readme"
+}
