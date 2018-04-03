@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/lalit527/NODE-Design-Pattern/issues"
   },
-  "homepage": "https://github.com/lalit527/NODE-Design-Pattern#readme"
+  "homepage": "https://github.com/lalit527/NODE-Design-Pattern#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
