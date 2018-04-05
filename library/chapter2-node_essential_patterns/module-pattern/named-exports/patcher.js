@@ -1,0 +1,1 @@
+require('./logger-obj').customMessage = () => console.log('This is new Functionality    ');
