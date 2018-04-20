@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lalit527/NODE-Design-Pattern#readme",
   "dependencies": {
+    "async": "^2.6.0",
     "express": "^4.16.3"
   }
 }
