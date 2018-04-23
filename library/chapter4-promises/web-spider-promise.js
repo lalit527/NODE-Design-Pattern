@@ -54,3 +54,38 @@ function spider(url, callback) {
 spider(process.argv[2], 1)
     .then(() => console.log('Download complete')) 
     .catch(err => console.log(err));
+
+function spiderLink(currentUrl, body, nesting) {
+    let promise = Promise.resolve();
+    if(nesting === 0) {
+        return promise; 
+    }
+    const links = utilities.getPageLinks(currentUrl, body);
+    links.forEach(link => {
+        promise = promise.then(() => spider(link, nesting - 1));
+    });
+    return promise;
+}
+
+// Iterating over set of promises in sequence
+let tasks = [ /* ... */ ];
+let promise = Promise.resolve(); 
+tasks.forEach(task => {
+    promise = promise.then(() => {
+        return task();
+    }); 
+}); 
+promise.then(() => {    
+    //All tasks completed 
+});
+
+// This is an alternative for above code
+let tasks = [];
+let promise = tasks.reduce((prev, current) => {
+    return prev.then(() => {
+        return current;
+    });
+}, Promise.resolve());
+promise.then(() => {    
+    //All tasks completed 
+});
