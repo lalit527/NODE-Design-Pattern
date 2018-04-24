@@ -18,6 +18,10 @@
   "homepage": "https://github.com/lalit527/NODE-Design-Pattern#readme",
   "dependencies": {
     "async": "^2.6.0",
-    "express": "^4.16.3"
+    "co": "^4.6.0",
+    "express": "^4.16.3",
+    "mkdirp": "^0.5.1",
+    "request": "^2.85.0",
+    "thunkify": "^2.1.2"
   }
 }
