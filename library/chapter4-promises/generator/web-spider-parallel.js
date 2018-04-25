@@ -7,16 +7,6 @@ const nextTick = thunkify(process.nextTick);
 const utilities = require('./../utilities/utilities');
 const path = require('path');
 
-function* download(url, filename) {
-    console.log(`Downloading ${url}`); 
-    const response = yield request(url); 
-    const body = response[1]; 
-    yield mkdirp(path.dirname(filename)); 
-    yield writeFile(filename, body); 
-    console.log(`Downloaded and saved ${url}`); 
-    return body;
-}
-
 function* spider(url, nesting) {
     const filename = utilities.urlToFilename(url); 
     let body; 
@@ -35,10 +25,9 @@ function* spiderLinks(currentUrl, body, nesting) {
     if(nesting === 0) { 
         return nextTick(); 
     }
-    const links = utilities.getPageLinks(currentUrl, body);   
-    for(let i = 0; i <links.length; i++) { 
-        yield spider(links[i], nesting - 1); 
-    }
+    const links = utilities.getPageLinks(currentUrl, body);
+    const tasks = links.map(link => spider(link, nesting - 1));   
+    yield tasks;
 }
 
 co(function* () {
@@ -49,3 +38,33 @@ co(function* () {
         console.log(err);
     } 
 });
+
+/**
+ * Parallel executin using callback
+ */
+function spiderLinks(currentUrl, body, nesting) {
+    if(nesting === 0) { 
+        return nextTick(); 
+    }
+
+    return callback => {
+        let completed = 0, hasErrors = false;
+        const links = utilities.getPageLinks(currentUrl, body);
+        if(links.length === 0) { 
+            return process.nextTick(callback); 
+        }
+    }
+    function done(err, result) {
+        if(err && !hasErrors) { 
+            hasErrors = true; 
+            return callback(err); 
+        } 
+        if(++completed === links.length && !hasErrors) {
+            callback(); 
+        }
+    }
+        
+    for(let i = 0; i < links.length; i++) { 
+        co(spider(links[i], nesting - 1)).then(done); 
+    }
+}
