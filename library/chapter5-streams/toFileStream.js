@@ -1,5 +1,5 @@
 const stream = require('stream');
-const fs = requires('fs');
+const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 
