@@ -23,6 +23,8 @@
     "express": "^4.16.3",
     "mkdirp": "^0.5.1",
     "request": "^2.85.0",
+    "split": "^1.0.1",
+    "through2": "^2.0.3",
     "thunkify": "^2.1.2"
   }
 }
