@@ -8,7 +8,7 @@ class ParallelStream extends stream.Transform {
         this.terminateCallback = null;
     }
 
-    _transform(chunk, encoding, done) {
+    _transform(chunk, enc, done) {
         this.running++;
         this.userTransform(chunk, enc, this.push.bind(this), this._onComplete.bind(this));
         done();
@@ -22,7 +22,7 @@ class ParallelStream extends stream.Transform {
         }
     }
 
-    _onComplete() {
+    _onComplete(err) {
         this.running--;
         if(err) {
             return this.emit('error', err);
