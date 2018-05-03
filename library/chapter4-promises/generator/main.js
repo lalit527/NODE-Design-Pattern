@@ -1,7 +1,6 @@
 function getPath(path, source, destination) {
     let length = Object.keys(path).length;
     let vertices = Object.keys(path);
-    let visted = [];
     let allPath = [];
     let vistedDic = {}
     for(let i = 0; i < length; i++) {
