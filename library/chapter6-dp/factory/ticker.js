@@ -1,4 +1,4 @@
-const Roee = require('roee');
+const Roee = require('./roee');
 
 const ticker = new Roee((emit) => {
   let tickCount = 0;
