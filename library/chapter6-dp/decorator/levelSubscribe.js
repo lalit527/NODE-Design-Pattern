@@ -1,5 +1,5 @@
 module.exports = function levelSubscribe(db) {
-  db.subscribe = (apttern, listener) => {
+  db.subscribe = (pattern, listener) => {
     db.on('put', (key, val) => {
       const match = Object.keys(pattern).every(
         k => (pattern[k] === val[k])
