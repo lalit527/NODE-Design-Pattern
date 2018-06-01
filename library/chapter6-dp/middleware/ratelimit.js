@@ -11,4 +11,4 @@ module.exports = function *(next) {
 
   lastcall.set(this.ip, now);
   this.set('X-Rate-zreset')
-}x
+}
