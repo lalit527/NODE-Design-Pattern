@@ -24,9 +24,11 @@ if (cluster.isMaster) {
       worker.disconnect();
 
       worker.on('exit', () => {
-        if (!worker.suicide) return; 
+        if (!worker.exitedAfterDisconnect) return; 
         const newWorker = cluster.fork();
+        console.log('Error');
         newWorker.on('listening', () => { 
+          console.log('Listening',  i + 1);
           restartWorker(i + 1);
         }); 
       })
